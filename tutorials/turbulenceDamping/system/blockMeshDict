@@ -1,0 +1,157 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+L 12600;// channel length in mm
+IL 600;// inlet region length in mm
+WH 30;// water height in mm
+CH 100;// channel height in mm
+CW 1;// channel width in mm
+
+
+NIL 10;// nodes in the flow direction, inlet region
+NL #calc "20*$NIL";// nodes in the flow direction, two phase region
+NW 6;// nodes in water region
+NA 14;// nodes in air region
+NZ 1;// nodes in spanwise direction
+
+
+convertToMeters 0.001;
+
+vertices
+(
+    (0 0 0)//#0, 
+    ($L 0 0)//#1, 
+    ($L $WH 0)//#2, 
+    (0 $WH 0)//#3, 
+    (0 0 $CW)//#4, 
+    ($L 0 $CW)//#5, 
+    ($L $WH $CW)//#6, 
+    (0 $WH $CW)//#7, 
+    (0 $CH 0)//#8, 
+    (0 $CH $CW)//#9, 
+    ($L $CH 0)//#10, 
+    ($L $CH $CW)//#11, 
+    ($IL 0 0)//#12,
+    ($IL $WH 0)//#13,
+    ($IL $CH 0)//#14,
+    ($IL $CH $CW)//#15,
+    ($IL $WH $CW)//#16,
+    ($IL 0 $CW)//#17,
+
+);
+
+blocks
+(
+    hex (0 12 13 3 4 17 16 7) inwater ($NIL $NW $NZ) simpleGrading (1 1 1)
+    hex (12 1 2 13 17 5 6 16) water ($NL $NW $NZ) simpleGrading (1 1 1)
+    hex (3 13 14 8 7 16 15 9) inair ($NIL $NA $NZ) simpleGrading (1 1 1)
+    hex (13 2 10 14 16 6 11 15) air ($NL $NA $NZ) simpleGrading (1 1 1)
+);
+
+edges
+(
+
+);
+
+boundary
+(
+    inletLiquidFilm
+    {
+        type mappedPatch;
+        offset          (0.1 0 0);
+        sampleRegion    region0;
+        sampleMode      nearestCell;
+        samplePatch     none;
+        faces
+        (
+	(0 4 7 3)
+        );
+    }
+
+    inletBulk
+    {
+        type mappedPatch;
+        offset          (0.1 0 0);
+        sampleRegion    region0;
+        sampleMode      nearestCell;
+        samplePatch     none;
+        faces
+        (
+	(3 7 9 8)
+        );
+    }
+    
+    outlet
+    {
+        type patch;
+        faces
+        (
+	(1 2 6 5)
+	(2 10 11 6)
+        );
+    }
+
+    upWall
+    {
+        type wall;
+        faces
+        (
+	(8 9 15 14)
+	(14 15 11 10)
+        );
+    }
+
+    downWall
+    {
+        type wall;
+        faces
+        (
+	(0 12 17 4)
+	(12 1 5 17)
+        );
+    }
+
+    front
+    {
+        type empty;
+        faces
+        (
+	(0 3 13 12)
+	(12 13 2 1)
+	(3 8 14 13)
+	(13 14 10 2)
+        );
+    }
+
+    back
+    {
+        type empty;
+        faces
+        (
+	(4 17 16 7)
+	(17 5 6 16)
+	(7 16 15 9)
+	(16 6 11 15)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

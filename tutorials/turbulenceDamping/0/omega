@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1706                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 -1 0 0 0 0];
+
+
+internalField   uniform 1000;
+
+boundaryField
+{
+    inletLiquidFilm
+    {
+        type            mapped;
+        field           omega;
+        setAverage      0;
+        average         1000;
+        interpolationScheme cell;
+        value           uniform 1000;
+    }
+    inletBulk
+    {
+        type            mapped;
+        field           omega;
+        setAverage      0;
+        average         1000;
+        interpolationScheme cell;
+        value           uniform 1000;
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    upWall
+    {
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        beta1           0.075;
+        blended         false;
+        type            omegaWallFunction;
+        value           uniform 1000;
+    }
+    downWall
+    {
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        beta1           0.075;
+        blended         false;
+        type            omegaWallFunction;
+        value           uniform 1000;
+    }
+    front
+    {
+        type            empty;
+    }
+    back
+    {
+        type            empty;
+    }
+    baf0_half0
+    {
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        beta1           0.075;
+        blended         false;
+        type            omegaWallFunction;
+        value           uniform 1000;
+    }
+    baf0_half1
+    {
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        beta1           0.075;
+        blended         false;
+        type            omegaWallFunction;
+        value           uniform 1000;
+    }
+}
+
+
+// ************************************************************************* //

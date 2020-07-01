@@ -1,0 +1,29 @@
+EXE_INC = \
+    -I. \
+    -I../VoF \
+    -I$(LIB_SRC)/transportModels \
+    -I$(LIB_SRC)/transportModels/incompressible/lnInclude \
+    -I$(LIB_SRC)/transportModels/twoPhaseMixture/lnInclude \
+    -I$(LIB_SRC)/transportModels/interfaceProperties/lnInclude \
+    -I$(LIB_SRC)/transportModels/immiscibleIncompressibleTwoPhaseMixture/lnInclude \
+    -IphaseChangeTwoPhaseMixtures/lnInclude \
+    -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
+    -I../varRhoIncompressible/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/dynamicFvMesh/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
+    -lvarRhoPhaseChangeTwoPhaseMixtures \
+    -ltwoPhaseMixture \
+    -linterfaceProperties \
+    -ltwoPhaseProperties \
+    -lincompressibleTransportModels \
+    -lturbulenceModels \
+    -lvarRhoIncompressibleTurbulenceModels \
+    -lfiniteVolume \
+    -ldynamicFvMesh \
+    -ltopoChangerFvMesh \
+    -lfvOptions \
+    -lmeshTools

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+path=$(pwd)
+
+# compile the required turbulence model
+cd ../../bruteForceExamples/VOFKEpsilonIm
+wclean
+wmake
+
+# Run the simulation
+cd $path || exit 1    # Run from this directory
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+runApplication blockMesh
+runApplication setFields
+runApplication $(getApplication)
+
+#------------------------------------------------------------------------------

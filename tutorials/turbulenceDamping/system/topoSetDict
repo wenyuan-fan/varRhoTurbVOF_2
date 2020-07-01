@@ -1,0 +1,76 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+{
+name csBaffle0;
+type cellSet;
+action new;
+source zoneToCell;
+sourceInfo
+{
+name inair; 
+}
+} 
+{
+name csBaffle0_1;
+type cellSet;
+action new;
+source zoneToCell;
+sourceInfo
+{
+name inwater;// Matching faces with innerBLock are to become a baffle. 
+}
+}
+// convert to faces
+{
+name fsBaffle0;
+type faceSet;
+action new;
+source cellToFace;
+sourceInfo
+{
+set csBaffle0;
+option all;
+}
+}
+// get the common subset
+{
+name fsBaffle0;
+type faceSet;
+action subset;
+source cellToFace;
+sourceInfo
+{
+set csBaffle0_1;
+option all;
+}
+}
+// convert to a Zone
+{
+name fzsBaffle0;
+type faceZoneSet;
+action new;
+source setToFaceZone;
+sourceInfo
+{
+faceSet fsBaffle0;
+}
+}
+// end of baffle 0
+);
+// ************************************************************************* //
