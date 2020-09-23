@@ -111,9 +111,6 @@ public:
 
     // Member Functions
 
-         //- Return the volumetric flux field
-         virtual tmp<surfaceScalarField> phi() const;
-
         //- Return the laminar dynamic viscosity
         virtual tmp<volScalarField> mu() const;
 

@@ -54,19 +54,6 @@ Foam::varRhoIncompressibleTurbulenceModel::varRhoIncompressibleTurbulenceModel
     rho_(rho)
 {}
 
- Foam::tmp<Foam::surfaceScalarField>
- Foam::varRhoIncompressibleTurbulenceModel::phi() const
- {
-     if (phi_.dimensions() == dimensionSet(0, 3, -1, 0, 0))
-     {
-         return phi_;
-     }
-     else
-     {
-         return phi_/fvc::interpolate(rho_);
-     }
- }
-
 Foam::tmp<Foam::volScalarField>
 Foam::varRhoIncompressibleTurbulenceModel::mu() const
 {
@@ -77,7 +64,7 @@ Foam::varRhoIncompressibleTurbulenceModel::mu() const
 Foam::tmp<Foam::scalarField>
 Foam::varRhoIncompressibleTurbulenceModel::mu(const label patchi) const
 {
-    return rho_*nu(patchi);
+    return rho_.boundaryField()[patchi]*nu(patchi);
 }
 
 
@@ -91,7 +78,7 @@ Foam::varRhoIncompressibleTurbulenceModel::mut() const
 Foam::tmp<Foam::scalarField>
 Foam::varRhoIncompressibleTurbulenceModel::mut(const label patchi) const
 {
-    return rho_*nut(patchi);
+    return rho_.boundaryField()[patchi]*nut(patchi);
 }
 
 
@@ -105,7 +92,7 @@ Foam::varRhoIncompressibleTurbulenceModel::muEff() const
 Foam::tmp<Foam::scalarField>
 Foam::varRhoIncompressibleTurbulenceModel::muEff(const label patchi) const
 {
-    return rho_*nuEff(patchi);
+    return rho_.boundaryField()[patchi]*nuEff(patchi);
 }
 
 

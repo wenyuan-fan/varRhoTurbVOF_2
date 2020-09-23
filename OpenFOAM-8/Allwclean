@@ -1,0 +1,66 @@
+#!/bin/bash
+# clean varRhoIncompressible class
+cd varRhoIncompressible
+
+wclean
+
+cd ..
+
+# clean varRhoCavitatingFoam
+cd varRhoCavitatingFoam
+
+wclean
+
+cd ..
+
+#clean varRhoInterFoam family
+
+#varRhoInterFoam
+cd varRhoInterFoam
+
+wclean
+
+
+#varRhoInterMixingFoam
+cd varRhoInterMixingFoam
+
+wclean
+
+cd ..
+
+
+cd ..
+#clean varRhoMultiphaseInterFoam family
+
+cd varRhoMultiphaseInterFoam
+
+# multiphaseMixture
+cd multiphaseMixture
+
+wclean
+
+cd ..
+
+# varRhoMultiphaseInterFoam
+wclean
+
+cd ..
+
+#clean varRhoInterPhaseChangeFoam family
+cd varRhoInterPhaseChangeFoam
+
+# phaseChangeTwoPhaseMixtures
+cd phaseChangeTwoPhaseMixtures
+wclean
+cd ..
+
+# varRhoInterPhaseChangeFoam
+wclean
+
+cd ..
+
+
+# turbulence damping
+cd ../turbulenceDamping
+wclean
+

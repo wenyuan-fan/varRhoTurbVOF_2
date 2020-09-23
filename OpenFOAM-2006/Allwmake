@@ -1,0 +1,110 @@
+#!/bin/bash
+# compile varRhoIncompressible class
+cd varRhoIncompressible
+
+wmake
+
+cd ..
+
+#compile varRhoCavitatingFoam family
+
+#varRhoCavitatingFoam
+cd varRhoCavitatingFoam
+
+wmake
+
+#varRhoCavitatingDyMFoam
+cd varRhoCavitatingDyMFoam
+
+wmake
+
+cd ..
+
+cd ..
+
+#compile varRhoInterIsoFoam
+
+cd varRhoInterIsoFoam
+
+wmake
+
+cd ..
+
+#compile varRhoInterFoam family
+
+#varRhoInterFoam
+cd varRhoInterFoam
+
+wmake
+
+#varRhoInterMixingFoam
+cd varRhoInterMixingFoam
+
+wmake
+
+cd ..
+
+#varRhoOverInterDymFoam
+cd varRhoOverInterDyMFoam
+
+wmake
+
+cd ..
+
+cd ..
+
+#compile varRhoMultiphaseInterFoam family
+
+cd varRhoMultiphaseInterFoam
+
+# multiphaseMixture
+cd multiphaseMixture
+
+wmake
+
+cd ..
+
+# varRhoMultiphaseInterFoam
+
+wmake
+
+
+cd ..
+
+
+#compile varRhoInterPhaseChangeFoam family
+cd varRhoInterPhaseChangeFoam
+
+# phaseChangeTwoPhaseMixtures
+cd phaseChangeTwoPhaseMixtures
+wmake
+cd ..
+
+# varRhoInterPhaseChangeDyMFoam
+cd varRhoInterPhaseChangeDyMFoam
+wmake
+cd ..
+
+# varRhoInterPhaseChangeFoam
+wmake
+
+cd ..
+
+
+#compile varRhoInterCondensatingEvaporatingFoam family
+cd varRhoInterCondensatingEvaporatingFoam
+
+# temperaturePhaseChangeTwoPhaseMixtures
+cd temperaturePhaseChangeTwoPhaseMixtures
+wmake
+cd ..
+
+# varRhoInterCondensatingEvaporatingFoam
+wmake
+
+cd ..
+
+
+#compile turbulence damping fvOptions
+cd ../turbulenceDamping
+wmake

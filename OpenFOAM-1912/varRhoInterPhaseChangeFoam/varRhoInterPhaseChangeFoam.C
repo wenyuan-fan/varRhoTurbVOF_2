@@ -53,7 +53,7 @@ Description
         Fan, W. & Anglart, H. (2020).
         varRhoTurbVOF 2: Modified OpenFOAM volume of fluid solvers with 
         advanced turbulence modeling capability.
-        Computer Physics Communications, doi: 10.1016/j.cpc.2020.107467
+        Computer Physics Communications, 256, 107467
     \endverbatim
 
 \*---------------------------------------------------------------------------*/

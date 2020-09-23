@@ -6,11 +6,13 @@ Reference:
 
 Wenyuan Fan and Henryk Anglart. "varRhoTurbVOF: A new set of volume of fluid solvers for turbulent isothermal multiphase flows in OpenFOAM." Computer Physics Communications (2020), 247, 106876
 
-Wenyuan Fan and Henryk Anglart. "varRhoTurbVOF 2: Modified OpenFOAM volume of fluid solvers with advanced turbulence modeling capability." Computer Physics Communications (2020), doi: 10.1016/j.cpc.2020.107467.
+Wenyuan Fan and Henryk Anglart. "varRhoTurbVOF 2: Modified OpenFOAM volume of fluid solvers with advanced turbulence modeling capability." Computer Physics Communications (2020), 256, 107467.
 
 ## File structure
   * OpenFOAM-7: folder for code to be compiled with OpenFOAM v7;
+  * OpenFOAM-8: folder for code to be compiled with OpenFOAM v8;
   * OpenFOAM-1912: folder for code to be compiled with OpenFOAM v1912;
+  * OpenFOAM-2006: folder for code to be compiled with OpenFOAM v2006;
   * bruteForceExamples: folder for three examples of the brute-force approach;
   * turbulenceDamping: folder for the turbulence damping fvOptions;
   * tutorials: folder for tutorials;
@@ -19,7 +21,7 @@ Wenyuan Fan and Henryk Anglart. "varRhoTurbVOF 2: Modified OpenFOAM volume of fl
 
 
 ## Installation
-The installation of OpenFOAM v1912 or OpenFOAM v7 is a prerequisite for using the newly designed solvers and the turbulence damping fvOptions.
+The installation of a supported version of OpenFOAM is a prerequisite for using the newly designed solvers and the turbulence damping fvOptions.
 In order to use the code, one needs to enter the desired version folder and load the corresponding environment variable for OpenFOAM.
 Then run "./Allwmake" to compile the code.
 
