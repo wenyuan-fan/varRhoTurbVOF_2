@@ -1,5 +1,0 @@
-SOURCE = \
-incompressibleThreePhaseMixture/incompressibleThreePhaseMixture.C \
-threePhaseInterfaceProperties/threePhaseInterfaceProperties.C \
-immiscibleIncompressibleThreePhaseMixture/immiscibleIncompressibleThreePhaseMixture.C \
-varRhoInterMixingFoam.C 
