@@ -209,7 +209,7 @@ Foam::fv::turbulenceDamping::turbulenceDamping
     lengthScale_(coeffs_.lookupOrDefault<word>("lengthScale", "FA")),
     dampingTreatment_
     (
-        coeffs_.lookupOrDefault<word>("dampingTreatment", "heavyNagative")
+        coeffs_.lookupOrDefault<word>("dampingTreatment", "heavyNegative")
     ),
     explicitSourceTreatment_
     (
@@ -248,10 +248,10 @@ Foam::fv::turbulenceDamping::turbulenceDamping
 
     // make sure the field name is consistent with the turbulence model
     // the following line should fail if inconsistent
-    const volScalarField& eplisonOrOmega =
+    const volScalarField& epsilonOrOmega =
         mesh_.lookupObject<volScalarField>(fieldNames_[0]);
 
-    Info << "Turbulence damping works in " << eplisonOrOmega.name() 
+    Info << "Turbulence damping works in " << epsilonOrOmega.name() 
          << " mode"<< endl;
 
     applied_.setSize(fieldNames_.size(), false);
@@ -280,12 +280,12 @@ void Foam::fv::turbulenceDamping::addSup
 {
     const volScalarField& Rho = mesh().lookupObject<volScalarField>("rho");
 
-    const volScalarField& eplisonOrOmega =
+    const volScalarField& epsilonOrOmega =
         mesh().lookupObject<volScalarField>(fieldNames_[fieldi]);
 
-    volScalarField::Internal source = calculateSource(eqn, fieldi)/eplisonOrOmega/Rho;
+    volScalarField::Internal source = calculateSource(eqn, fieldi)/epsilonOrOmega/Rho;
 
-    eqn += fvm::Sp(source, eplisonOrOmega);
+    eqn += fvm::Sp(source, epsilonOrOmega);
 }
 
 
@@ -298,10 +298,10 @@ void Foam::fv::turbulenceDamping::addSup
 {
     const dimensionSet& dimEqn = eqn.dimensions();
 
-    const volScalarField& eplisonOrOmega =
+    const volScalarField& epsilonOrOmega =
         mesh().lookupObject<volScalarField>(fieldNames_[fieldi]);
 
-    const dimensionSet& dimEorW = eplisonOrOmega.dimensions();
+    const dimensionSet& dimEorW = epsilonOrOmega.dimensions();
 
     volScalarField::Internal source = calculateSource(eqn, fieldi);
 
@@ -319,7 +319,7 @@ void Foam::fv::turbulenceDamping::addSup
     }
     else
     {
-        eqn += fvm::Sp(source/eplisonOrOmega, eplisonOrOmega);
+        eqn += fvm::Sp(source/epsilonOrOmega, epsilonOrOmega);
     }
 }
 
